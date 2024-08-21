@@ -1,4 +1,4 @@
-package com.beapps.assessment_task_trycar
+package com.beapps.assessment_task_trycar.post.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
