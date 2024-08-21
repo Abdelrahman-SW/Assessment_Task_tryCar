@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.beapps.assessment_task_trycar"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.beapps.assessment_task_trycar"
@@ -71,11 +71,15 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
 
     implementation(libs.bundles.ktor)
+
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.navigation.compose)
 
 }
