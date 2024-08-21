@@ -32,23 +32,19 @@ class MainActivity : ComponentActivity() {
             Assessment_Task_tryCarTheme {
                 KoinContext {
                     val navController = rememberNavController()
-                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                        NavHost(
-                            modifier = Modifier.padding(innerPadding),
-                            navController = navController,
-                            startDestination = Screens.PostsScreen
-                        ) {
-                              composable<Screens.PostsScreen> {
-                                  PostsListScreen(navController = navController)
-                              }
-                              composable<Screens.PostCommentsScreen> {
-                                  val postId = it.toRoute<Screens.PostCommentsScreen>().postId
-                                  PostsCommentsScreen(navController = navController , postId = postId)
-                              }
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screens.PostsScreen
+                    ) {
+                        composable<Screens.PostsScreen> {
+                            PostsListScreen(navController = navController)
+                        }
+                        composable<Screens.PostCommentsScreen> {
+                            val postId = it.toRoute<Screens.PostCommentsScreen>().postId
+                            PostsCommentsScreen(navController = navController, postId = postId)
                         }
                     }
                 }
             }
         }
-    }
-}
+    }}

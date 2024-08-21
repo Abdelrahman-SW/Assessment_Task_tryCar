@@ -44,16 +44,16 @@ import com.beapps.assessment_task_trycar.ui.theme.poppinsFontFamily
 @Composable
 fun PostItem(modifier: Modifier = Modifier, post: Post, onPostClicked: (Post) -> Unit) {
     Card(
-        modifier = Modifier
-            .clickable {
-                onPostClicked(post)
-            }
-            .padding(8.dp),
         shape = RoundedCornerShape(16.dp),
+        modifier = Modifier.padding(8.dp),
         elevation = CardDefaults.cardElevation(8.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
     ) {
-        Column(modifier = modifier.padding(16.dp)) {
+        Column(modifier = modifier
+            .clickable {
+                onPostClicked(post)
+            }
+            .padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -100,7 +100,7 @@ fun InteractWithPostBottomBar() {
     ) {
         postBottomBarItems.forEach { item ->
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(imageVector = item.icon, contentDescription = item.title)
+                Icon(imageVector = item.icon, contentDescription = item.title, tint = item.tint)
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = item.title, fontFamily = poppinsFontFamily)
             }
@@ -126,11 +126,12 @@ fun PostItemPreview() {
 
 data class PostBottomBarItem(
     val title: String,
-    val icon: ImageVector
+    val icon: ImageVector,
+    val tint: Color = Color.Black
 )
 
 val postBottomBarItems = listOf(
-    PostBottomBarItem("Like", Icons.Outlined.ThumbUp),
+    PostBottomBarItem("Like", Icons.Outlined.ThumbUp, Color.Blue),
     PostBottomBarItem("Comment", Icons.AutoMirrored.Outlined.Comment),
     PostBottomBarItem("Share", Icons.Outlined.Share)
 )
