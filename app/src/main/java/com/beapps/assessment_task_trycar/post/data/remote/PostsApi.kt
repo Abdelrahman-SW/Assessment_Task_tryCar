@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface PostsApi {
     suspend fun getPosts () : Resource<List<PostDto>>
     suspend fun getPostsComments(postId : Int) : Resource<List<PostCommentDto>>
-
+    suspend fun syncFavouritePost(postId: Int , isFavourite : Boolean) : Boolean
 
     companion object {
         const val BASE_URL = "https://jsonplaceholder.typicode.com/"

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 class GetFavouritePosts (
     private val repository: PostsRepository
 ) {
-    operator fun invoke() : Flow<Resource<List<Post>>> {
+    operator fun invoke() : Flow<Resource<Flow<List<Post>>>> {
         return repository.getFavouritePosts()
     }
 }

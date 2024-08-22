@@ -8,5 +8,5 @@ sealed class Screens {
     data object PostsScreen : Screens()
 
     @Serializable
-    data class PostCommentsScreen(val postId: Int) : Screens()
+    data class PostCommentsScreen(val postId: Int , val isPostFavourite : Boolean) : Screens()
 }

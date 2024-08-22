@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 class PostCommentsViewModel(
     private val postUseCases: PostUseCases
@@ -26,8 +27,11 @@ class PostCommentsViewModel(
     private val _eventFlow = MutableSharedFlow<UIEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    private var currentPostId : Int = -1
+
 
     fun loadPostComments(postId: Int) {
+        currentPostId = postId
         postUseCases.getComments(postId).onEach { result ->
             when (result) {
                 is Resource.Error -> {
@@ -49,11 +53,17 @@ class PostCommentsViewModel(
         }.launchIn(viewModelScope)
     }
 
-    fun onFavouriteClicked() {
-
+    fun onFavouriteBtnClicked(isPostFavourite: Boolean) {
+        viewModelScope.launch {
+            isLoading = true
+            postUseCases.updatePostFavouriteValue(currentPostId, isPostFavourite)
+            isLoading = false
+            _eventFlow.emit(UIEvent.ShowInfoMessage(if (isPostFavourite) "Added to favourites" else "Removed from favourites"))
+        }
     }
 
     sealed class UIEvent {
         data class ShowErrorMessage(val message: String) : UIEvent()
+        data class ShowInfoMessage(val message: String) : UIEvent()
     }
 }

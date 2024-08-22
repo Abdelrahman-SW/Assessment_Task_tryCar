@@ -10,7 +10,7 @@ import com.beapps.assessment_task_trycar.post.domain.repository.PostsRepository
 import com.beapps.assessment_task_trycar.post.domain.use_cases.GetFavouritePosts
 import com.beapps.assessment_task_trycar.post.domain.use_cases.GetPostComments
 import com.beapps.assessment_task_trycar.post.domain.use_cases.GetPosts
-import com.beapps.assessment_task_trycar.post.domain.use_cases.GetPostsToRsync
+import com.beapps.assessment_task_trycar.post.domain.use_cases.SyncFavouritePosts
 import com.beapps.assessment_task_trycar.post.domain.use_cases.PostUseCases
 import com.beapps.assessment_task_trycar.post.domain.use_cases.UpdatePostFavouriteValue
 import com.beapps.assessment_task_trycar.post.domain.use_cases.UpdatePostNeedRsyncValue
@@ -33,7 +33,7 @@ val appModule = module {
             getPosts = GetPosts(repository = get()),
             getComments = GetPostComments(repository = get()),
             getFavouritePosts = GetFavouritePosts(repository = get()),
-            getPostsToRsync = GetPostsToRsync(repository = get()),
+            syncFavouritePosts = SyncFavouritePosts(repository = get()),
             updatePostNeedRsyncValue = UpdatePostNeedRsyncValue(repository = get()),
             updatePostFavouriteValue = UpdatePostFavouriteValue(repository = get()),
         )

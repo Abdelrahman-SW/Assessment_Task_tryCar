@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PostsDao {
     @Query("SELECT * FROM posts")
+    fun getAllPostsFlow(): Flow<List<PostEntity>>
+
+    @Query("SELECT * FROM posts")
     suspend fun getAllPosts(): List<PostEntity>
 
     @Query("DELETE FROM posts")
@@ -27,7 +30,7 @@ interface PostsDao {
     }
 
     @Query("Select * from posts where isFavourite = 1")
-    suspend fun getFavouritePosts() : List<PostEntity>
+    fun getFavouritePosts() : Flow<List<PostEntity>>
 
     @Update
     suspend fun updatePost(post: PostEntity)

@@ -27,7 +27,9 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -60,7 +62,7 @@ fun PostItem(modifier: Modifier = Modifier, post: Post, onPostClicked: (Post) ->
             ) {
                 CircularUserProfile()
                 Spacer(modifier = Modifier.width(8.dp))
-                Text(text = post.userId.toString(), fontFamily = poppinsFontFamily)
+                Text(text = post.userId.toString(), fontFamily = poppinsFontFamily , color = MaterialTheme.colorScheme.primary)
             }
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = post.title, fontWeight = FontWeight.Bold, fontFamily = poppinsFontFamily)
