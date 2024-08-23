@@ -4,7 +4,6 @@ import com.beapps.assessment_task_trycar.post_feature.domain.models.PostComment
 import kotlinx.serialization.Serializable
 
 @Serializable
-
 data class PostCommentDto(
     val id: Int,
     val postId: Int,

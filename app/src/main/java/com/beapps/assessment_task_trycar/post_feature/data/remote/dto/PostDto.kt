@@ -11,16 +11,6 @@ data class PostDto(
     val title: String,
     val body: String
 ) {
-    fun toPost(): Post {
-        return Post(
-            id = this.id,
-            userId = userId,
-            title = this.title,
-            body = this.body ,
-            isFavorite = false
-        )
-    }
-
     fun toPostEntity(): PostEntity {
         return PostEntity(
             id = this.id,

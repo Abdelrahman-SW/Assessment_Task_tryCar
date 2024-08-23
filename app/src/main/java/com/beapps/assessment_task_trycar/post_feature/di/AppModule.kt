@@ -17,7 +17,7 @@ import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.UpdatePos
 import com.beapps.assessment_task_trycar.post_feature.domain.util.AppConnectivityManager
 import com.beapps.assessment_task_trycar.post_feature.domain.util.AppConnectivityManagerImpl
 import com.beapps.assessment_task_trycar.post_feature.presentation.post_comments.PostCommentsViewModel
-import com.beapps.assessment_task_trycar.post_feature.presentation.post_list.PostsViewModel
+import com.beapps.assessment_task_trycar.post_feature.presentation.posts_and_favourites.PostsViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -40,8 +40,6 @@ val appModule = module {
             updatePostFavouriteValue = UpdatePostFavouriteValue(repository = get()),
         )
     }
-
-
     singleOf(::PostsRepositoryImpl).bind<PostsRepository>()
     singleOf(::PostsApiKtorImpl).bind<PostsApi>()
     singleOf(::AppConnectivityManagerImpl).bind<AppConnectivityManager>()
@@ -60,6 +58,7 @@ val appModule = module {
             }
         }
     }
+
     single {
        Room.databaseBuilder(
            get<Context>(),

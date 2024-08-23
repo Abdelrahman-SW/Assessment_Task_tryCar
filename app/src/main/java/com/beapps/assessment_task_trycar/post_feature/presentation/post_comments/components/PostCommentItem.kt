@@ -25,10 +25,10 @@ import com.beapps.assessment_task_trycar.ui.theme.poppinsFontFamily
 @Composable
 fun PostCommentItem(modifier: Modifier = Modifier , postComment: PostComment) {
     Card(
-        modifier = Modifier.padding(8.dp),
+        modifier = modifier.padding(8.dp),
         shape = RoundedCornerShape(16.dp)
     ) {
-        Column(modifier = modifier.padding(16.dp)) {
+        Column(modifier = Modifier.padding(16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically

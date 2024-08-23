@@ -7,8 +7,3 @@ interface AppConnectivityManager {
     fun isNetworkAvailable () : Boolean
     fun disconnect ()
 }
-
-enum class NetworkState {
-        CONNECTED,
-        LOST
-}

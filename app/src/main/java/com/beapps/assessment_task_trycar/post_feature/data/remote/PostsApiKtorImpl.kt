@@ -12,8 +12,7 @@ import kotlinx.coroutines.delay
 
 class PostsApiKtorImpl(
     private val client: HttpClient,
-    val context : Context,
-    val appConnectivityManager: AppConnectivityManager
+    private val appConnectivityManager: AppConnectivityManager
 ) : PostsApi {
     override suspend fun getPosts(): Resource<List<PostDto>> {
         return try {
@@ -52,9 +51,9 @@ class PostsApiKtorImpl(
     }
 
     override suspend fun syncFavouritePost(postId: Int, isFavourite: Boolean) : Boolean{
-          // check for internet connection (if no connection return false else return true after delay of 1 second)
+          // check for internet connection (if no connection return false else return true after delay of 500 mile second)
           if (!appConnectivityManager.isNetworkAvailable()) return false
-          delay(1000)
+          delay(500)
           return true
     }
 }

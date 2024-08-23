@@ -14,7 +14,7 @@ fun CircularUserProfile(modifier: Modifier = Modifier) {
     Icon(
         imageVector = Icons.Default.AccountCircle,
         contentDescription = "User",
-        modifier = Modifier.size(50.dp),
+        modifier = modifier.size(50.dp),
         tint = lightBlue10035Alpha
     )
 }

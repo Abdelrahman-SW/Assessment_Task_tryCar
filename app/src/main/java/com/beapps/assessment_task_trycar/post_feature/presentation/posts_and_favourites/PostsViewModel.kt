@@ -1,4 +1,4 @@
-package com.beapps.assessment_task_trycar.post_feature.presentation.post_list
+package com.beapps.assessment_task_trycar.post_feature.presentation.posts_and_favourites
 
 import android.util.Log
 import androidx.compose.runtime.getValue
@@ -118,11 +118,6 @@ class PostsViewModel(
 
     }
 
-    fun syncFavouritePosts() {
-        viewModelScope.launch {
-            postUseCases.syncFavouritePosts()
-        }
-    }
 
     fun onPostClicked(post: Post) {
         viewModelScope.launch {

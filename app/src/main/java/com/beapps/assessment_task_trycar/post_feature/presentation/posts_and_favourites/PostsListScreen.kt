@@ -1,4 +1,4 @@
-package com.beapps.assessment_task_trycar.post_feature.presentation.post_list
+package com.beapps.assessment_task_trycar.post_feature.presentation.posts_and_favourites
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
@@ -21,9 +21,7 @@ import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
@@ -47,7 +45,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.beapps.assessment_task_trycar.post_feature.domain.util.NetworkState
-import com.beapps.assessment_task_trycar.post_feature.presentation.post_list.components.PostItem
+import com.beapps.assessment_task_trycar.post_feature.presentation.posts_and_favourites.components.PostItem
 import com.beapps.assessment_task_trycar.post_feature.presentation.util.BottomNavigationItems
 import com.beapps.assessment_task_trycar.post_feature.presentation.util.Screens
 import com.beapps.assessment_task_trycar.ui.theme.lightBlue100
@@ -82,6 +80,7 @@ fun PostsListScreen(
             )
         )
     }
+
     bottomBarNavigationItems[1].badgeCount = favouritePosts.size
 
     var selectedBottomBarItemIndex by rememberSaveable {
@@ -181,7 +180,7 @@ fun PostsListScreen(
                     Spacer(modifier = Modifier.height(16.dp))
                 }
 
-                LazyColumn() {
+                LazyColumn {
                     val postsToShow = if (selectedBottomBarItemIndex == 0) posts else favouritePosts
                     if (selectedBottomBarItemIndex == 0) {
                         item {

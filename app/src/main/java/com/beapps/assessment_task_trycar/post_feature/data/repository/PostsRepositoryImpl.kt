@@ -16,7 +16,7 @@ class PostsRepositoryImpl(
 ) : PostsRepository {
     override fun getPosts(): Flow<Resource<Flow<List<Post>>>> {
         // to apply single of truth principle we will always get the data from single place (room db)
-        // so fetch posts from the server -> update db -> get data from db
+        // so fetch posts from the server -> update db -> get updated data from db
         return flow {
             emit(Resource.Loading())
             val postsEntitiesFlow = db.postsDao().getAllPostsFlow()

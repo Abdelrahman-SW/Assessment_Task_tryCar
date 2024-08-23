@@ -55,6 +55,7 @@ fun PostsCommentsScreen(
     val postComments = viewModel.postComments
     val context = LocalContext.current
     val networkState = viewModel.networkState
+
     var isPostFavouriteState by rememberSaveable {
         mutableStateOf(isPostFavourite)
     }
@@ -91,7 +92,7 @@ fun PostsCommentsScreen(
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { navController.popBackStack() }) {
+                    IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                             contentDescription = "back"
