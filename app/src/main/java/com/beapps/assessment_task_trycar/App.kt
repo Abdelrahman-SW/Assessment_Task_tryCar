@@ -1,7 +1,7 @@
 package com.beapps.assessment_task_trycar
 
 import android.app.Application
-import com.beapps.assessment_task_trycar.post.di.appModule
+import com.beapps.assessment_task_trycar.post_feature.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

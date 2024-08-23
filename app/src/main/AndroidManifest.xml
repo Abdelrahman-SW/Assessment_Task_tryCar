@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Assessment_Task_tryCar"
         tools:targetApi="31">
         <activity
-            android:name=".post.presentation.MainActivity"
+            android:name=".post_feature.presentation.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Assessment_Task_tryCar">
             <intent-filter>
