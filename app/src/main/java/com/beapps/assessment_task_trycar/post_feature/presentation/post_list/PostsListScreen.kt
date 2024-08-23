@@ -23,7 +23,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -48,6 +50,8 @@ import com.beapps.assessment_task_trycar.post_feature.domain.util.NetworkState
 import com.beapps.assessment_task_trycar.post_feature.presentation.post_list.components.PostItem
 import com.beapps.assessment_task_trycar.post_feature.presentation.util.BottomNavigationItems
 import com.beapps.assessment_task_trycar.post_feature.presentation.util.Screens
+import com.beapps.assessment_task_trycar.ui.theme.lightBlue100
+import com.beapps.assessment_task_trycar.ui.theme.mainComponentColor
 import com.beapps.assessment_task_trycar.ui.theme.poppinsFontFamily
 import org.koin.androidx.compose.koinViewModel
 
@@ -108,23 +112,29 @@ fun PostsListScreen(
             .fillMaxSize(),
         topBar = {
             TopAppBar(
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = mainComponentColor),
                 title = {
                     Text(
                         text = if (selectedBottomBarItemIndex == 0) "Posts" else "Favourites",
                         fontFamily = poppinsFontFamily,
+                        color = Color.White
                     )
                 },
             )
         },
         bottomBar = {
-            NavigationBar {
+            NavigationBar (
+                containerColor = mainComponentColor,
+                contentColor = Color.White
+            ) {
                 bottomBarNavigationItems.forEachIndexed { index, item ->
                     NavigationBarItem(
+                        colors = NavigationBarItemDefaults.colors(indicatorColor = lightBlue100),
                         selected = selectedBottomBarItemIndex == index,
                         onClick = { selectedBottomBarItemIndex = index },
                         label = {
                             Text(
+                                color = Color.White,
                                 text = item.label,
                                 fontFamily = poppinsFontFamily,
                                 fontWeight = if (selectedBottomBarItemIndex == index) FontWeight.Bold else FontWeight.Normal

@@ -19,16 +19,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.beapps.assessment_task_trycar.post_feature.domain.models.PostComment
-import com.beapps.assessment_task_trycar.post_feature.presentation.post_list.components.CircularUserProfile
+import com.beapps.assessment_task_trycar.post_feature.presentation.components.CircularUserProfile
 import com.beapps.assessment_task_trycar.ui.theme.poppinsFontFamily
 
 @Composable
 fun PostCommentItem(modifier: Modifier = Modifier , postComment: PostComment) {
     Card(
         modifier = Modifier.padding(8.dp),
-        shape = RoundedCornerShape(16.dp),
-        elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        shape = RoundedCornerShape(16.dp)
     ) {
         Column(modifier = modifier.padding(16.dp)) {
             Row(

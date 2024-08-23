@@ -23,6 +23,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.beapps.assessment_task_trycar.post_feature.domain.util.NetworkState
 import com.beapps.assessment_task_trycar.post_feature.presentation.post_comments.components.PostCommentItem
+import com.beapps.assessment_task_trycar.ui.theme.mainComponentColor
 import com.beapps.assessment_task_trycar.ui.theme.poppinsFontFamily
 import org.koin.androidx.compose.koinViewModel
 
@@ -77,6 +79,11 @@ fun PostsCommentsScreen(
             .fillMaxSize(),
         topBar = {
             TopAppBar(
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = mainComponentColor,
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                ),
                 title = {
                     Text(
                         text = "Comments",

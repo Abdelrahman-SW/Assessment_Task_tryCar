@@ -1,5 +1,6 @@
 package com.beapps.assessment_task_trycar.post_feature.presentation.post_list.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -32,21 +34,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.beapps.assessment_task_trycar.post_feature.domain.models.Post
+import com.beapps.assessment_task_trycar.post_feature.presentation.components.CircularUserProfile
+import com.beapps.assessment_task_trycar.ui.theme.lightBlue100
+import com.beapps.assessment_task_trycar.ui.theme.lightBlue10035Alpha
+import com.beapps.assessment_task_trycar.ui.theme.mainComponentColor35Alpha
 import com.beapps.assessment_task_trycar.ui.theme.poppinsFontFamily
 
 @Composable
 fun PostItem(modifier: Modifier = Modifier, post: Post, onPostClicked: (Post) -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
-        modifier = Modifier.padding(8.dp),
-        elevation = CardDefaults.cardElevation(8.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        modifier = Modifier.padding(8.dp)
     ) {
         Column(modifier = modifier
             .clickable {
                 onPostClicked(post)
             }
-            .padding(16.dp)) {
+            .padding(16.dp)
+        ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -70,16 +75,6 @@ fun PostItem(modifier: Modifier = Modifier, post: Post, onPostClicked: (Post) ->
             InteractWithPostBottomBar()
         }
     }
-}
-
-@Composable
-fun CircularUserProfile(modifier: Modifier = Modifier) {
-    Icon(
-        imageVector = Icons.Default.AccountCircle,
-        contentDescription = "User",
-        modifier = Modifier.size(50.dp),
-        tint = Color.Gray
-    )
 }
 
 @Composable
@@ -124,7 +119,7 @@ data class PostBottomBarItem(
 )
 
 val postBottomBarItems = listOf(
-    PostBottomBarItem("Like", Icons.Outlined.ThumbUp, Color.Blue),
+    PostBottomBarItem("Like", Icons.Outlined.ThumbUp, tint = lightBlue100),
     PostBottomBarItem("Comment", Icons.AutoMirrored.Outlined.Comment),
     PostBottomBarItem("Share", Icons.Outlined.Share)
 )
