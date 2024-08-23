@@ -14,6 +14,8 @@ import com.beapps.assessment_task_trycar.post.domain.use_cases.SyncFavouritePost
 import com.beapps.assessment_task_trycar.post.domain.use_cases.PostUseCases
 import com.beapps.assessment_task_trycar.post.domain.use_cases.UpdatePostFavouriteValue
 import com.beapps.assessment_task_trycar.post.domain.use_cases.UpdatePostNeedRsyncValue
+import com.beapps.assessment_task_trycar.post.domain.util.AppConnectivityManager
+import com.beapps.assessment_task_trycar.post.domain.util.AppConnectivityManagerImpl
 import com.beapps.assessment_task_trycar.post.presentation.post_comments.PostCommentsViewModel
 import com.beapps.assessment_task_trycar.post.presentation.post_list.PostsViewModel
 import io.ktor.client.HttpClient
@@ -42,6 +44,7 @@ val appModule = module {
 
     singleOf(::PostsRepositoryImpl).bind<PostsRepository>()
     singleOf(::PostsApiKtorImpl).bind<PostsApi>()
+    singleOf(::AppConnectivityManagerImpl).bind<AppConnectivityManager>()
     viewModelOf(::PostsViewModel)
     viewModelOf(::PostCommentsViewModel)
 

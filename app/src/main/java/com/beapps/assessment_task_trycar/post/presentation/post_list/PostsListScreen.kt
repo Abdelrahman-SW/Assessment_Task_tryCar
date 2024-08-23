@@ -51,6 +51,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.beapps.assessment_task_trycar.post.domain.util.NetworkState
 import com.beapps.assessment_task_trycar.post.presentation.post_list.components.PostItem
 import com.beapps.assessment_task_trycar.post.presentation.util.BottomNavigationItems
 import com.beapps.assessment_task_trycar.post.presentation.util.Screens
@@ -67,6 +68,7 @@ fun PostsListScreen(
     val isLoading = viewModel.isLoading
     val posts = viewModel.posts
     val favouritePosts = viewModel.favouritePosts
+    val networkState = viewModel.networkState
     val context = LocalContext.current
 
     val bottomBarNavigationItems = rememberSaveable {
@@ -90,11 +92,6 @@ fun PostsListScreen(
     }
 
     LaunchedEffect(key1 = true) {
-
-        if (true) { //check for connection if exits sync data
-            viewModel.syncFavouritePosts()
-        }
-
         viewModel.eventFlow.collect { event ->
             when (event) {
                 is PostsViewModel.UIEvent.ShowErrorMessage -> {
@@ -161,51 +158,65 @@ fun PostsListScreen(
 
     ) { padding ->
 
-        Box(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp),
-        ) {
 
+        Box(modifier = modifier.fillMaxSize().padding(padding)) {
 
-            LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-                val postsToShow = if (selectedBottomBarItemIndex == 0) posts else favouritePosts
-                if (selectedBottomBarItemIndex == 0) {
-                    item {
-                        TextField(
-                            colors = TextFieldDefaults.colors(
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
-                            ),
-                            modifier = Modifier.fillMaxWidth(),
-                            value = "",
-                            onValueChange = {},
-                            shape = RoundedCornerShape(16.dp),
-                            placeholder = {
-                                Text(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    text = "What is on your mind , Abdelrahman ?",
-                                    fontFamily = poppinsFontFamily,
-                                    textAlign = TextAlign.Center
-                                )
-                            }
-                        )
+            Column(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
 
-                        Spacer(modifier = Modifier.height(8.dp))
+                if (networkState == NetworkState.LOST) {
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "Network Lost ! - Please Check Your Internet Connection.",
+                        fontFamily = poppinsFontFamily,
+                        textAlign = TextAlign.Center
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+
+                LazyColumn() {
+                    val postsToShow = if (selectedBottomBarItemIndex == 0) posts else favouritePosts
+                    if (selectedBottomBarItemIndex == 0) {
+                        item {
+                            TextField(
+                                colors = TextFieldDefaults.colors(
+                                    focusedIndicatorColor = Color.Transparent,
+                                    unfocusedIndicatorColor = Color.Transparent
+                                ),
+                                modifier = Modifier.fillMaxWidth(),
+                                value = "",
+                                onValueChange = {},
+                                shape = RoundedCornerShape(16.dp),
+                                placeholder = {
+                                    Text(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        text = "What is on your mind , Abdelrahman ?",
+                                        fontFamily = poppinsFontFamily,
+                                        textAlign = TextAlign.Center
+                                    )
+                                }
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+                        }
+                    }
+
+                    items(postsToShow, key = { it.id }) {
+                        PostItem(post = it, onPostClicked = viewModel::onPostClicked)
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
 
-                items(postsToShow, key = { it.id }) {
-                    PostItem(post = it, onPostClicked = viewModel::onPostClicked)
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
+
             }
 
             if (isLoading) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
             }
-
         }
     }
 }

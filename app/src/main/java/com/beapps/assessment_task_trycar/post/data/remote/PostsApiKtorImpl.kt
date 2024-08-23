@@ -3,6 +3,7 @@ package com.beapps.assessment_task_trycar.post.data.remote
 import android.content.Context
 import com.beapps.assessment_task_trycar.post.data.remote.dto.PostCommentDto
 import com.beapps.assessment_task_trycar.post.data.remote.dto.PostDto
+import com.beapps.assessment_task_trycar.post.domain.util.AppConnectivityManager
 import com.beapps.assessment_task_trycar.post.domain.util.Resource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -11,7 +12,8 @@ import kotlinx.coroutines.delay
 
 class PostsApiKtorImpl(
     private val client: HttpClient,
-    val context : Context
+    val context : Context,
+    val appConnectivityManager: AppConnectivityManager
 ) : PostsApi {
     override suspend fun getPosts(): Resource<List<PostDto>> {
         return try {
@@ -51,6 +53,7 @@ class PostsApiKtorImpl(
 
     override suspend fun syncFavouritePost(postId: Int, isFavourite: Boolean) : Boolean{
           // check for internet connection (if no connection return false else return true after delay of 1 second)
+          if (!appConnectivityManager.isNetworkAvailable()) return false
           delay(1000)
           return true
     }
