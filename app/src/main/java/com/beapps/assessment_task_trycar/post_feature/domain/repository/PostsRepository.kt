@@ -10,6 +10,5 @@ interface PostsRepository {
     fun getPostsComments(postId: Int): Flow<Resource<List<PostComment>>>
     fun getFavouritePosts(): Flow<Resource<Flow<List<Post>>>>
     suspend fun updatePostFavouriteValue (postId: Int , isFavourite: Boolean)
-    suspend fun updatePostNeedToRsyncValue (postId: Int , needToRsync: Boolean)
     suspend fun syncAllFavouritePosts()
 }

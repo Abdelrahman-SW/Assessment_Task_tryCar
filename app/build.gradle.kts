@@ -8,8 +8,16 @@ plugins {
 }
 
 android {
+
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/LICENSE-notice.md")
+        exclude("META-INF/NOTICE.txt")
+    }
+
     namespace = "com.beapps.assessment_task_trycar"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.beapps.assessment_task_trycar"
@@ -63,11 +71,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
@@ -82,5 +85,24 @@ dependencies {
 
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
+
+    // for local unit testing :
+    testImplementation(libs.junit)
+    testImplementation(libs.io.mockk)
+    testImplementation(libs.google.truth)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+
+    //for instrumented testing :
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.io.mockk.android)
+    androidTestImplementation(libs.google.truth)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
+
+
+    debugImplementation (libs.ui.test.manifest)
 
 }

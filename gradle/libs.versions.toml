@@ -13,7 +13,12 @@ ksp = "2.0.0-1.0.24"
 koin = "3.6.0-Beta4"
 ktor = "2.3.12"
 materialIconsExtended = "1.6.8"
-navigationCompose = "2.8.0-beta07"
+navigationCompose = "2.8.0-alpha08"
+kotlinx-coroutines-test = "1.6.4"
+mockk = "1.13.2"
+truth = "1.1.3"
+uiTestManifest = "1.6.8"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,6 +54,11 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 #others
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
 androidx-navigation-compose = {module = "androidx.navigation:navigation-compose" , version.ref = "navigationCompose"}
+kotlinx-coroutines-test = {module = "org.jetbrains.kotlinx:kotlinx-coroutines-test" , version.ref = "kotlinx-coroutines-test"}
+io-mockk = {module = "io.mockk:mockk" , version.ref = "mockk"}
+io-mockk-android = {module = "io.mockk:mockk-android" , version.ref = "mockk"}
+google-truth = {module = "com.google.truth:truth" , version.ref = "truth"}
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

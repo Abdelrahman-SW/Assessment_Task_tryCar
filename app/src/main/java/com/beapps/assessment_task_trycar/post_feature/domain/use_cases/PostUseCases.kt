@@ -5,6 +5,5 @@ data class PostUseCases(
     val getComments: GetPostComments,
     val getFavouritePosts: GetFavouritePosts,
     val syncFavouritePosts: SyncFavouritePosts,
-    val updatePostNeedRsyncValue: UpdatePostNeedRsyncValue,
     val updatePostFavouriteValue: UpdatePostFavouriteValue
 )

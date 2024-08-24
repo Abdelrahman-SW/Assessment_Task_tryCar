@@ -84,12 +84,10 @@ class PostsRepositoryImpl(
         db.postsDao().updatePostNeedToRsyncToServerValue(postId, needToRsyncToServer = !isSyncedSuccessfully)
     }
 
-    override suspend fun updatePostNeedToRsyncValue(postId: Int, needToRsync: Boolean) {
-        db.postsDao().updatePostNeedToRsyncToServerValue(postId, needToRsync)
-    }
 
     override suspend fun syncAllFavouritePosts() {
         val postsToSync = getPostsToRsync()
+        if (postsToSync.isEmpty()) return // no posts need to rsync
         postsToSync.forEach { post ->
             val isSyncedSuccessfully = api.syncFavouritePost(post.id, post.isFavorite)
             db.postsDao().updatePostNeedToRsyncToServerValue(

@@ -10,10 +10,9 @@ import com.beapps.assessment_task_trycar.post_feature.domain.repository.PostsRep
 import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.GetFavouritePosts
 import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.GetPostComments
 import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.GetPosts
-import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.SyncFavouritePosts
 import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.PostUseCases
+import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.SyncFavouritePosts
 import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.UpdatePostFavouriteValue
-import com.beapps.assessment_task_trycar.post_feature.domain.use_cases.UpdatePostNeedRsyncValue
 import com.beapps.assessment_task_trycar.post_feature.domain.util.AppConnectivityManager
 import com.beapps.assessment_task_trycar.post_feature.domain.util.AppConnectivityManagerImpl
 import com.beapps.assessment_task_trycar.post_feature.presentation.post_comments.PostCommentsViewModel
@@ -36,7 +35,6 @@ val appModule = module {
             getComments = GetPostComments(repository = get()),
             getFavouritePosts = GetFavouritePosts(repository = get()),
             syncFavouritePosts = SyncFavouritePosts(repository = get()),
-            updatePostNeedRsyncValue = UpdatePostNeedRsyncValue(repository = get()),
             updatePostFavouriteValue = UpdatePostFavouriteValue(repository = get()),
         )
     }
